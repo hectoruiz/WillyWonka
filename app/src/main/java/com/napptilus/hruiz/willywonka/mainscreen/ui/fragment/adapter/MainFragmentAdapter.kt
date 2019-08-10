@@ -13,8 +13,8 @@ import com.napptilus.hruiz.willywonka.mainscreen.viewmodel.MainFragmentViewModel
 class MainFragmentAdapter(private val viewModel: Lazy<MainFragmentViewModel>) :
     RecyclerView.Adapter<MainFragmentViewHolder>(), Filterable {
 
-    private var employees: MutableList<Employee>
-    private val allEmployees: MutableList<Employee>
+    private var employees: List<Employee>
+    private var allEmployees: List<Employee>
     private var employeeListFiltered: MutableList<Employee>
     private var filterMaleActivated: Boolean
     private var filterFemaleActivated: Boolean
@@ -44,8 +44,8 @@ class MainFragmentAdapter(private val viewModel: Lazy<MainFragmentViewModel>) :
     }
 
     fun updateData(employeeList: List<Employee>) {
-        employees.addAll(employeeList)
-        allEmployees.addAll(employeeList)
+        employees=employeeList
+        allEmployees=employeeList
         notifyDataSetChanged()
     }
 
