@@ -6,7 +6,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Response
 
 class WillyWonkaService(private val api: WillyWonkaApi) {
-    fun getEmployeeList(currentPage: Int): Deferred<Response<List<Department>>> = api.getEmployeeList(currentPage)
+    fun getEmployeeList(currentPage: Int): Deferred<Response<Department>> = api.getEmployeeList(currentPage)
 
     fun getEmployeeDetail(employeeId: Int): Deferred<Response<EmployeeDetail>> = api.getEmployeeDetail(employeeId)
 }

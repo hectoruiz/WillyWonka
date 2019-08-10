@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 interface WillyWonkaApi {
     @GET("oompa-loompas")
-    fun getEmployeeList(@Query("page") id: Int): Deferred<Response<List<Department>>>
+    fun getEmployeeList(@Query("page") id: Int): Deferred<Response<Department>>
 
     @GET("oompa-loompas/{id}")
     fun getEmployeeDetail(@Path("id") employeeId: Int): Deferred<Response<EmployeeDetail>>

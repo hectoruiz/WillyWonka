@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Willy Wonka</string>
+    <string name="sw_filter_by_gender">Filtrar por profesión</string>
+    <string name="male">Hombre</string>
+    <string name="female">Mujer</string>
+    <string name="search_by_profession">Profesión</string>
+</resources>
