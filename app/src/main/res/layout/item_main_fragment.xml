@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/layout">
+    <data>
+        <variable
+                name="employee"
+                type="com.napptilus.hruiz.willywonka.mainscreen.model.entities.Employee"/>
+        <variable
+                name="viewmodel"
+                type="com.napptilus.hruiz.willywonka.mainscreen.viewmodel.MainFragmentViewModel"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:gender="@{employee.gender}">
+        <android.support.constraint.Guideline
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/guideline9"
+                app:layout_constraintGuide_percent="0.3"/>
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/constraintLayout3">
+
+            <android.support.constraint.Guideline
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/guideline10" app:layout_constraintGuide_percent="0.5"/>
+            <TextView
+                    android:text="@{employee.firstName}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView9"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline10" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp"/>
+            <TextView
+                    android:text="@{employee.lastName}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView10"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline10"
+                    app:layout_constraintStart_toEndOf="@+id/textView9" android:layout_marginStart="8dp"/>
+            <TextView
+                    android:text="@{employee.profession}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView11" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/guideline10"/>
+            <TextView
+                    android:text="@{employee.email}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView12"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp"/>
+        </android.support.constraint.ConstraintLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp" app:srcCompat="@drawable/ic_image_placeholder"
+                android:id="@+id/imageView4" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline9" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:image="@{employee.image}"/>
+    </android.support.constraint.ConstraintLayout>
+
+
+</layout>
