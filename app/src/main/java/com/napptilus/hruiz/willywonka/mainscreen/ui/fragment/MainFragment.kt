@@ -37,7 +37,7 @@ class MainFragment : Fragment(),
         adapter.setOnClickListener(this)
         bindViews()
 
-        mainFragmentViewModel.getEmployees(1)
+        if (mainFragmentViewModel.employeeList.value == null) mainFragmentViewModel.getEmployees(1)
     }
 
     override fun onEmployeeListItemClicked(idEmployee: Int) {

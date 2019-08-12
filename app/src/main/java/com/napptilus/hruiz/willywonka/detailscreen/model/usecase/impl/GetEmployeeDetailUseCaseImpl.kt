@@ -3,8 +3,6 @@ package com.napptilus.hruiz.willywonka.detailscreen.model.usecase.impl
 import com.napptilus.hruiz.willywonka.detailscreen.model.entities.EmployeeDetail
 import com.napptilus.hruiz.willywonka.detailscreen.model.repository.impl.EmployeeDetailRepository
 import com.napptilus.hruiz.willywonka.detailscreen.model.usecase.GetEmployeeDetailUseCase
-import kotlinx.coroutines.Deferred
-import retrofit2.Response
 
 class GetEmployeeDetailUseCaseImpl(private val employeeDetailRepository: EmployeeDetailRepository) :
     GetEmployeeDetailUseCase {

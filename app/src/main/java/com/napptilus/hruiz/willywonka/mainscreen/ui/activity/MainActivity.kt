@@ -18,25 +18,4 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
     }
-
-//    val progressBar: ProgressBar = this.progressBar
-//
-//    progressBar.visibility = View.VISIBLE
-//
-//    GlobalScope.launch(Dispatchers.Main) {
-//        fetchAndShowUser() // fetch on IO thread
-//    }
-//
-//    suspend fun fetchAndShowUser() {
-//        val employeeDetail = employeeDetailRepository.getEmployeeDetail(4)
-//        showUser(employeeDetail)
-//    }
-//
-//
-//    fun showUser(employeeDetail: EmployeeDetail?) {
-//        progressBar.visibility = View.INVISIBLE
-//
-//        Log.d("RESULTADO", employeeDetail.toString())
-//    }
-
 }

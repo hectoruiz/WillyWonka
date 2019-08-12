@@ -23,7 +23,6 @@ fun provideOkHttpClient(): OkHttpClient {
         .build()
 }
 
-
 fun provideRetrofit(client: OkHttpClient): Retrofit =
     Retrofit.Builder()
         .client(client)
@@ -33,7 +32,6 @@ fun provideRetrofit(client: OkHttpClient): Retrofit =
         .build()
 
 fun provideWillyWonkaApi(retrofit: Retrofit): WillyWonkaApi = retrofit.create(WillyWonkaApi::class.java)
-
 
 fun provideWillyWonkaService(willyWonkaApi: WillyWonkaApi): WillyWonkaService {
     return WillyWonkaService(willyWonkaApi)
