@@ -1,4 +1,4 @@
-package com.napptilus.hruiz.willywonka.mainscreen.ui.fragment.adapter
+package com.napptilus.hruiz.willywonka.utils
 
 import android.databinding.BindingAdapter
 import android.os.Build
@@ -7,20 +7,21 @@ import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.napptilus.hruiz.willywonka.R
+import com.napptilus.hruiz.willywonka.detailscreen.model.entities.EmployeeDetail
 import com.napptilus.hruiz.willywonka.mainscreen.model.entities.Employee
 import com.napptilus.hruiz.willywonka.mainscreen.model.entities.Gender
+import com.napptilus.hruiz.willywonka.mainscreen.ui.fragment.adapter.MainFragmentAdapter
 import de.hdodenhof.circleimageview.CircleImageView
 
 @BindingAdapter("loadingData")
-fun loadingData(progressBar: ProgressBar, dataLoaded: Boolean) {
+fun loadingData(view: View, dataLoaded: Boolean) {
     Log.d("estado progressbar", dataLoaded.toString())
     when (dataLoaded) {
-        true -> progressBar.visibility = View.VISIBLE
-        false -> progressBar.visibility = View.GONE
+        true -> view.visibility = View.VISIBLE
+        false -> view.visibility = View.GONE
     }
 }
 
@@ -76,5 +77,13 @@ fun showErrorLoading(constraintLayout: ConstraintLayout, error: Boolean) {
             constraintLayout.context.getText(R.string.error_loading),
             Snackbar.LENGTH_LONG
         ).show()
+    }
+}
+
+@BindingAdapter("showData")
+fun showData(view: View, employeeDetail: EmployeeDetail?) {
+    when (employeeDetail) {
+        null -> view.visibility = View.GONE
+        else -> view.visibility = View.VISIBLE
     }
 }
