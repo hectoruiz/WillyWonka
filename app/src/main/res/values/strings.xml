@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Willy Wonka</string>
-    <string name="sw_filter_by_gender">Filtrar por profesión</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="search_by_profession">Profession</string>
+    <string name="employee_height">Height: %1s</string>
+    <string name="employee_age">Age: %1s</string>
+    <string name="employee_gender">Gender: %1s</string>
+    <string name="employee_description">"%1s"</string>
+    <string name="error_loading">Oooops! Something went wrong! Unable to load the data…</string>
+    <string name="interests">Interests</string>
 </resources>
