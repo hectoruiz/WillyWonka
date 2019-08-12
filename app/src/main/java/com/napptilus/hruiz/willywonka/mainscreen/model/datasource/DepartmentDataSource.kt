@@ -9,7 +9,7 @@ import retrofit2.Response
 
 class DepartmentDataSource(private val service: WillyWonkaService) {
     suspend fun getDepartmentByPageAsync(pageId: Int): Deferred<Response<Department>> =
-        withContext(Dispatchers.Main) {
+        withContext(Dispatchers.IO) {
             service.getEmployeeList(pageId)
         }
 }

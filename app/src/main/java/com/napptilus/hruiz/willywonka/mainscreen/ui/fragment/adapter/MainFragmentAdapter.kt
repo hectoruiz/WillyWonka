@@ -8,9 +8,13 @@ import android.widget.Filterable
 import com.napptilus.hruiz.willywonka.R
 import com.napptilus.hruiz.willywonka.mainscreen.model.entities.Employee
 import com.napptilus.hruiz.willywonka.mainscreen.model.entities.Gender
+import com.napptilus.hruiz.willywonka.mainscreen.ui.fragment.adapter.listener.OnClickEmployeeListener
 import com.napptilus.hruiz.willywonka.mainscreen.viewmodel.MainFragmentViewModel
+import java.lang.ref.WeakReference
 
-class MainFragmentAdapter(private val viewModel: Lazy<MainFragmentViewModel>) :
+class MainFragmentAdapter(
+    private val viewModel: Lazy<MainFragmentViewModel>
+) :
     RecyclerView.Adapter<MainFragmentViewHolder>(), Filterable {
 
     private var employees: List<Employee>
@@ -18,6 +22,7 @@ class MainFragmentAdapter(private val viewModel: Lazy<MainFragmentViewModel>) :
     private var employeeListFiltered: MutableList<Employee>
     private var filterMaleActivated: Boolean
     private var filterFemaleActivated: Boolean
+    private var onEmployeeClickListener: WeakReference<OnClickEmployeeListener>? = null
 
     init {
         employees = mutableListOf()
@@ -30,8 +35,12 @@ class MainFragmentAdapter(private val viewModel: Lazy<MainFragmentViewModel>) :
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MainFragmentViewHolder =
         MainFragmentViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_main_fragment, parent, false)
+                .inflate(R.layout.item_main_fragment, parent, false), onEmployeeClickListener
         )
+
+    fun setOnClickListener(onClickListener: OnClickEmployeeListener) {
+        onEmployeeClickListener = WeakReference(onClickListener)
+    }
 
     override fun getItemCount(): Int = employees.size
 
@@ -44,8 +53,8 @@ class MainFragmentAdapter(private val viewModel: Lazy<MainFragmentViewModel>) :
     }
 
     fun updateData(employeeList: List<Employee>) {
-        employees=employeeList
-        allEmployees=employeeList
+        employees = employeeList
+        allEmployees = employeeList
         notifyDataSetChanged()
     }
 
@@ -56,7 +65,7 @@ class MainFragmentAdapter(private val viewModel: Lazy<MainFragmentViewModel>) :
             if (charSequenceString.isEmpty()) {
                 employees = allEmployees
                 employeeListFiltered = mutableListOf()
-            }else if (charSequenceString.isEmpty().not()) {
+            } else if (charSequenceString.isEmpty().not()) {
                 employeeListFiltered = mutableListOf()
                 allEmployees.map {
                     if (it.profession.toLowerCase().startsWith(charSequenceString.toLowerCase())

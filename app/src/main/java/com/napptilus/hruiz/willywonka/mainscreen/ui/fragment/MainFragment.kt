@@ -5,22 +5,20 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import android.widget.SearchView
+import androidx.navigation.fragment.findNavController
 import com.napptilus.hruiz.willywonka.databinding.MainFragmentBinding
 import com.napptilus.hruiz.willywonka.mainscreen.model.entities.Gender
 import com.napptilus.hruiz.willywonka.mainscreen.ui.fragment.adapter.MainFragmentAdapter
+import com.napptilus.hruiz.willywonka.mainscreen.ui.fragment.adapter.listener.OnClickEmployeeListener
 import com.napptilus.hruiz.willywonka.mainscreen.viewmodel.MainFragmentViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(),
+    OnClickEmployeeListener {
     private val mainFragmentViewModel: MainFragmentViewModel by viewModel()
     private lateinit var binding: MainFragmentBinding
     private lateinit var adapter: MainFragmentAdapter
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,13 +30,21 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         adapter = MainFragmentAdapter(viewModel())
+        adapter.setOnClickListener(this)
         bindViews()
 
         mainFragmentViewModel.getEmployees(1)
+    }
+
+    override fun onEmployeeListItemClicked(idEmployee: Int) {
+        val action = MainFragmentDirections.actionMainFragmentToDetailFragment()
+        action.employeeId = idEmployee
+
+        findNavController().navigate(action)
     }
 
     private fun bindViews() {
@@ -54,16 +60,18 @@ class MainFragment : Fragment() {
                 return false
             }
         })
-        binding.cbMale.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
-            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-                adapter.genderFilter(isChecked, Gender.MALE)
-            }
-        })
+        binding.cbMale.setOnCheckedChangeListener { _, isChecked ->
+            adapter.genderFilter(
+                isChecked,
+                Gender.MALE
+            )
+        }
 
-        binding.cbFemale.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
-            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-                adapter.genderFilter(isChecked, Gender.FEMALE)
-            }
-        })
+        binding.cbFemale.setOnCheckedChangeListener { _, isChecked ->
+            adapter.genderFilter(
+                isChecked,
+                Gender.FEMALE
+            )
+        }
     }
 }
